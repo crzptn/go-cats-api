@@ -31,8 +31,14 @@ func (a *App) Run(ctx context.Context) error {
 
 	a.loadRoutes()
 
+	router := middleware.CreateMiddlewareStack(
+		middleware.Logger(a.Logger, a.Router),
+		middleware.NormalizePath,
+		middleware.RecoverMiddleware,
+	)
+
 	server := http.Server{
-		Handler: middleware.Logger(a.Logger, a.Router),
+		Handler: router,
 		Addr:    a.Addr,
 	}
 

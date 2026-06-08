@@ -22,7 +22,7 @@ func main() {
 	conn, err := sql.Open("sqlite", *dbFile)
 	if err != nil {
 		fmt.Println(err)
-		os.Exit(1)
+		log.Fatal(err)
 	}
 
 	application := app.New(db.New(conn), fmt.Sprintf("127.0.0.1:%d", *port))

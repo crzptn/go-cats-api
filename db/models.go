@@ -5,7 +5,7 @@
 package db
 
 type Cat struct {
-	ID   int64
-	Name string
-	Age  int64
+	ID   int64  `json:"id"`
+	Name string `json:"name"`
+	Age  int64  `json:"age"`
 }

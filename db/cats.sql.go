@@ -14,8 +14,8 @@ INSERT INTO	cats (name, age) VALUES (?, ?) RETURNING id, name, age
 `
 
 type CreateCatParams struct {
-	Name string
-	Age  int64
+	Name string `json:"name"`
+	Age  int64  `json:"age"`
 }
 
 func (q *Queries) CreateCat(ctx context.Context, arg CreateCatParams) (Cat, error) {
@@ -35,7 +35,7 @@ func (q *Queries) DeleteCat(ctx context.Context, id int64) error {
 }
 
 const getCat = `-- name: GetCat :one
-SELECT id, name, age FROM cats WHERE id = ? LIMIT 1,1
+SELECT id, name, age FROM cats WHERE id = ? LIMIT 1
 `
 
 func (q *Queries) GetCat(ctx context.Context, id int64) (Cat, error) {
@@ -77,9 +77,9 @@ UPDATE cats SET name = ?, age= ? 	WHERE id = ?
 `
 
 type UpdateCatParams struct {
-	Name string
-	Age  int64
-	ID   int64
+	Name string `json:"name"`
+	Age  int64  `json:"age"`
+	ID   int64  `json:"id"`
 }
 
 func (q *Queries) UpdateCat(ctx context.Context, arg UpdateCatParams) error {

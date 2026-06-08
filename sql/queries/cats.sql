@@ -2,7 +2,7 @@
 SELECT * FROM cats;
 
 -- name: GetCat :one
-SELECT * FROM cats WHERE id = ? LIMIT 1,1;
+SELECT * FROM cats WHERE id = ? LIMIT 1;
 
 -- name: CreateCat :one
 INSERT INTO	cats (name, age) VALUES (?, ?) RETURNING *; 
